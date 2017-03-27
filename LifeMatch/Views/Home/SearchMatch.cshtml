@@ -1,0 +1,23 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="~/Scripts/SearchMatch.js"></script>
+
+<html ng-app="SearchMatch">
+
+<head></head>
+
+<body>
+
+<div ng-controller="SearchMatchController">
+    
+    <h2>{{ButtonTitle.Text}}</h2>
+    <button ng-click="callServer()">Call server</button>
+
+    <div ng-show="showMessage">
+        <h3>Server says: "Welcome, {{FirstName}} {{LastName}} !"</h3>
+    </div>
+
+</div>
+
+</body>
+
+</html>
