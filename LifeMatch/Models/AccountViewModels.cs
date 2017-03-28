@@ -99,10 +99,6 @@ namespace LifeMatch.Models
         [Required]
         [Display(Name = "I am")]
         public Enums.Gender Gender { get; set; }
-
-        [Required]
-        [Display(Name = "I'm interested in")]
-        public Enums.InterestedIn InterestedIn { get; set; }
     }
 
     public class ResetPasswordViewModel

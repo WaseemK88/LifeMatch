@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using LifeMatch.Models;
+using LifeMatch.Models.ObjectMappers;
+using Microsoft.AspNetCore.Mvc;
+using ActionResult = System.Web.Mvc.ActionResult;
 
 namespace LifeMatch.Controllers
 {
@@ -33,14 +37,14 @@ namespace LifeMatch.Controllers
             return View();
         }
 
-        public JsonResult HelloFromServer()
+        [System.Web.Mvc.HttpPost]
+        public JsonResult RegisterMember([FromBody] RegistrationResponsesUIModel registrationResponsesUIModel)
         {
-            var member = new MemberModel()
-            {
-                FirstName = "Chuck",
-                LastName = "Norris"
-            };
-            return Json(member, JsonRequestBehavior.AllowGet);
+            var registrationResponsesBEModel = RegistrationResponsesMapper.MapRegistrationResponses(registrationResponsesUIModel);
+
+            //TODO - create member in DB based on the registrationResponsesBEModel
+
+            return Json(registrationResponsesBEModel, JsonRequestBehavior.AllowGet);
         }
     }
 }

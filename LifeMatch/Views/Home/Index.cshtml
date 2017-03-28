@@ -12,10 +12,26 @@
     <div ng-controller="WelcomePageController">
 
         <div>
-            <h2>{{test}}</h2>
+            <h2>Your World. Your Love.</h2>
+            <h3>Join the dating site where you could <br />meet anyone, anywhere!</h3>
         </div>
 
-        <button ng-click="redirectToSearchMatch()">Redirect To SearchMatch</button>
+        <div>
+            <p>
+                I am a:
+                <select ng-model="selectedGender" ng-options="x for x in genders"></select>
+            </p>
+        </div>
+        <div>
+            <p>
+                Between ages
+                <select ng-model="agesStart" ng-options="x for x in ages"></select>
+                and <select ng-model="agesEnd" ng-options="x for x in ages"></select>
+            </p>
+        </div>
+
+
+        <button ng-click="redirectToSearchMatch()">Take a chance</button>
 
     </div>
 
