@@ -5,33 +5,84 @@
 <html ng-app="WelcomePage">
 
 <head>
+    <style>
+          .modal-body .row .col-md-3 {
+              text-align: center;
+          }  
+          .modal-body button {
+              width: 80%;
+          }  
+          .modal-body .col-md-3 {
+              padding: 3px;
+          }  
+         .center_div {
+             background: #FFFFFF;
+             margin: 0 auto;
+             width: 40%;
+             border-radius: 8px;
+             padding: 20px;
+         }
+         .red {
+             background-color: red;
+         }
+         .green {
+             background-color: green;
+         }
+         .yellow {
+             background-color: yellow;
+         }
+         .blue {
+             background-color: blue;
+         }
+         .transparent {
+             opacity: 0.5;
+         }
+    </style>
 </head>
 
 <body>
 
-    <div ng-controller="WelcomePageController">
+    <div class="container center_div" ng-controller="WelcomePageController">
 
-        <div>
-            <h2>Your World. Your Love.</h2>
-            <h3>Join the dating site where you could <br />meet anyone, anywhere!</h3>
+        <button type="button" class="btn btn-info btn-lg" ng-click="redirectToSearchMatch()">Go to SearchMatch</button>
+
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#interestsModal">Select interests</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="interestsModal">
+            
+            <div class="modal-dialog modal-lg" role="document" style="width: 70%; height:50%;">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Your interests</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="col-md-3" ng-repeat="x in interestButtons track by $index">
+                            <button type="button" class="btn btn-primary"
+                                    ng-class="{
+                                    'transparent': x.isSelected
+                                    }" 
+                                    ng-click="interestSelected($index)">{{x.text}}</button>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-3">
+                                <button type="button" class="btn btn-info btn-lg" data-dismiss="modal">Complete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-
-        <div>
-            <p>
-                I am a:
-                <select ng-model="selectedGender" ng-options="x for x in genders"></select>
-            </p>
-        </div>
-        <div>
-            <p>
-                Between ages
-                <select ng-model="agesStart" ng-options="x for x in ages"></select>
-                and <select ng-model="agesEnd" ng-options="x for x in ages"></select>
-            </p>
-        </div>
-
-
-        <button ng-click="redirectToSearchMatch()">Take a chance</button>
 
     </div>
 

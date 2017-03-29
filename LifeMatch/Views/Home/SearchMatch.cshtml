@@ -1,6 +1,6 @@
 ﻿<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="~/Scripts/SearchMatch.js"></script>
-<link href="~/Content/SearchMatch.css" rel="stylesheet" />">
+<link href="~/Content/SearchMatch.css" rel="stylesheet" />
 
 <html ng-app="SearchMatch">
 
@@ -94,7 +94,8 @@
             </div>
             <div class="col-sm-8">
                 <select class="form-control" ng-model="agesStart" ng-options="x for x in ages"></select>
-                and <select class="form-control" ng-model="agesEnd" ng-options="x for x in ages"></select>
+                <div class="col-md-4 col-md-offset-3">And</div>
+                <select class="form-control" ng-model="agesEnd" ng-options="x for x in ages"></select>
             </div>
         </div>
         <br />
@@ -111,7 +112,7 @@
         <br />
 
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-5"><button class="btn btn-primary" ng-click="register()">Register</button></div>
+            <div class="col-sm-4 col-sm-offset-5"><button class="btn btn-info btn-lg" ng-click="register()">Register</button></div>
         </div>
 
         <div ng-show="showMessage">
