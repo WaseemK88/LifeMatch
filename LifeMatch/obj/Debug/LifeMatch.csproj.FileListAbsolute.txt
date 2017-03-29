@@ -202,7 +202,6 @@ D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\Microsoft.Owin.Security.OAuth.xm
 D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\Microsoft.Owin.Security.Google.xml
 D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\Microsoft.Owin.Security.Twitter.xml
 D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\LifeMatchApplication\LifeMatch\LifeMatch\obj\Debug\LifeMatch.csprojResolveAssemblyReference.cache
 D:\LifeMatchApplication\LifeMatch\LifeMatch\obj\Debug\LifeMatch.dll
 D:\LifeMatchApplication\LifeMatch\LifeMatch\obj\Debug\LifeMatch.pdb
 D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\Microsoft.AspNetCore.Authorization.dll

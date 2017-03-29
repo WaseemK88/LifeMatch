@@ -75,4 +75,25 @@
                 var url = "http://" + $window.location.host + "/Home/SearchMatch";
                 $window.location.href = url;
             };
+
+
+            $scope.sendInterests = function () {
+                var selectedInterests = [];
+                for (var i = 0; i < $scope.interestButtons.length; i++) {
+                    if ($scope.interestButtons[i].isSelected) {
+                        selectedInterests.push($scope.interestButtons[i]);
+                    }
+                }
+                alert(JSON.stringify(selectedInterests));
+
+                var url = "http://" + $window.location.host + "/Home/SaveInterestsAsync";
+                $http({
+                    url: url,
+                    method: "POST",
+                    data: JSON.stringify(selectedInterests)
+                })
+                .then(function (interests) {
+                    alert(interests);
+                    });
+            };
         });
