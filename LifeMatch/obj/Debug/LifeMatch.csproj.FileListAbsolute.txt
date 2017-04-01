@@ -384,3 +384,6 @@ D:\stam\LifeMatch\LifeMatch\obj\Debug\LifeMatch.pdb
 D:\stam\LifeMatch\LifeMatch\bin\MySql.Data.dll
 D:\stam\LifeMatch\LifeMatch\bin\MySql.Data.Entity.dll
 D:\stam\LifeMatch\LifeMatch\bin\MySql.Web.dll
+D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\MySql.Data.dll
+D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\MySql.Data.Entity.dll
+D:\LifeMatchApplication\LifeMatch\LifeMatch\bin\MySql.Web.dll

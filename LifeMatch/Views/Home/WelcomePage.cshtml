@@ -1,0 +1,217 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="~/Scripts/WelcomePage.js"></script>
+<link href="~/Content/WelcomePage.css" rel="stylesheet" />
+
+
+<html ng-app="WelcomePage">
+
+<head>
+</head>
+
+<body>
+
+    <div class="container" ng-controller="WelcomePageController" data-ng-init="init()">  
+
+        <div class="modal fade" id="loginOrRegisterModal">
+
+            <div class="modal-dialog modal-lg" role="document" style="width: 50%; height: 50%;">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">Want to find your soul mate ?</h2>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <button type="button" class="btn btn-info btn-lg" ng-click="redirectToSearchMatch()">Login</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" 
+                                        data-target="#registrationModal" ng-click="openRegistrationModal()">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="registrationModal">
+
+            <div class="modal-dialog modal-lg" role="document" style="width: 80%; height:50%;">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title">{{RegistrationModalTitle}}</h2>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="firstRegPage" ng-hide="hideFirstRegPage">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>Name or nickname:</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" ng-model="name">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>Email:</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" ng-model="email">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>Password:</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" ng-model="password">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>Re-type password:</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control" ng-model="retypePassword">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button type="button" style="margin: 30px" class="btn btn-info btn-lg" ng-click="completeFirstRegStage()">Complete</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="secondRegPage" ng-hide="hideSecondRegPage">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>Birthday:</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <select class="form-control col-sm-3" ng-model="selectedMonth" ng-options="x for x in months"></select>
+                                    <select class="form-control col-sm-3" ng-model="selectedDay" ng-options="x for x in days"></select>
+                                    <select class="form-control col-sm-3" ng-model="selectedYear" ng-options="x for x in years"></select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>Country:</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" ng-model="country">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>City:</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input class="form-control" ng-model="city">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>Some interesting details<br />about you:</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" ng-model="aboutMe"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button type="button" style="margin: 30px" class="btn btn-info btn-lg" ng-click="completeSecondRegStage()">Complete</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="thirdRegPage" ng-hide="hideThirdRegPage">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>I am a:<p />
+                                </div>
+                                <div class="col-sm-9">
+                                    <select class="form-control" ng-model="selectedRelation" ng-options="x for x in relations"></select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>Between ages:<p />
+                                </div>
+                                <div class="col-sm-9">
+                                    <select class="form-control col-md-3" ng-model="agesStart" ng-options="x for x in ages"></select>
+                                    <div class="col-md-3"><b>And</b></div>
+                                    <select class="form-control col-md-3" ng-model="agesEnd" ng-options="x for x in ages"></select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p>Few words about your<br />ideal partner:
+                                    <p />
+                                </div>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" ng-model="aboutPartner"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button type="button" style="margin: 30px" class="btn btn-info btn-lg" ng-click="completeThirdRegStage()">Complete</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="interestsPage" ng-hide="hideInterestButtons">
+
+                            <div class="col-md-3"
+                                 ng-repeat="x in interestButtons track by $index">
+                                <button type="button" class="btn btn-warning"
+                                        ng-class="{
+                                    'transparent': x.isSelected
+                                    }"
+                                        ng-click="interestSelected($index)">
+                                    {{x.text}}
+                                </button>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    <button type="button" style="margin: 30px" class="btn btn-info btn-lg" ng-click="completeInterestsRegStage()">Complete</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

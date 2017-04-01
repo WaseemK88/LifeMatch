@@ -1,0 +1,88 @@
+﻿body {
+    background-image: url('Images/datingBackGround.PNG');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    color: #F90B6D;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 40px;
+    margin: 0 0 16px;
+}
+
+h2 {
+    color: #F90B6D;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 32px;
+    margin: 0 0 14px;
+}
+
+p {
+    color: #222;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0 0 14px;
+}
+
+select {
+    text-align: center !important;
+}
+
+/* ---------------------modal----------------------- */
+
+.modal-content {
+    background-image: url('Images/cloud.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.modal p {
+    font-size: 22px;
+    font-family: Comic Sans MS;
+}
+
+.modal-body .row .col-md-3 {
+    text-align: center;
+}
+
+.modal-body .row {
+    text-align: center;
+    padding: 20px;
+}
+
+.modal-body .row .col-sm-8 .form-control{
+    width: 100%;
+    padding: 20px;
+}
+
+.modal-body .row .col-md-4 {
+    text-align: center;
+    padding: 40px;
+}
+
+.modal-body button {
+    width: 80%;
+}
+
+.modal-body .col-md-3 {
+    padding: 3px;
+}
+
+.center_div {
+    background: #FFFFFF;
+    margin: 0 auto;
+    width: 40%;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.transparent {
+    opacity: 0.5;
+}

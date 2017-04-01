@@ -313,6 +313,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MemberModel.cs" />
     <Compile Include="Models\ObjectMappers\RegistrationResponsesMapper.cs" />
+    <Compile Include="Models\RegistrationOptionsModel.cs" />
     <Compile Include="Models\RegistrationResponsesBEModel.cs" />
     <Compile Include="Models\RegistrationResponsesUIModel.cs" />
     <Compile Include="Models\UserBasicInfoModel.cs" />
@@ -322,8 +323,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\cloud.jpg" />
+    <Content Include="Content\Images\datingBackGround.PNG" />
     <Content Include="Content\Images\LifeMatchBackground1.png" />
-    <Content Include="Content\SearchMatch.css" />
+    <Content Include="Content\WelcomePage.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -342,6 +345,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\SearchMatch.js" />
+    <Content Include="Scripts\Services\UserService.js" />
     <Content Include="Scripts\WelcomePage.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -357,7 +361,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\WelcomePage.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
