@@ -30,5 +30,7 @@ namespace LifeMatch.Models
             NickName = user.NickName;
             FacebookId = user.FacebookId;
         }
+
+        // add queries to get, create, update and delete queries.
     }
 }
