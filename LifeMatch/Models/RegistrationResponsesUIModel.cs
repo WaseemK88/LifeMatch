@@ -5,7 +5,6 @@ namespace LifeMatch.Models
     public class RegistrationResponsesUIModel
     {
         public string Name { get; set; }
-        public string Gender { get; set; }
         public string Month { get; set; }
         public string Day { get; set; }
         public string Year { get; set; }

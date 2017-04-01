@@ -57,6 +57,11 @@ select {
     padding: 20px;
 }
 
+.modal-body .row .col-sm-8 .form-control{
+    width: 100%;
+    padding: 20px;
+}
+
 .modal-body .row .col-md-4 {
     text-align: center;
     padding: 40px;

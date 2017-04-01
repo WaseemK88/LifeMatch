@@ -9,13 +9,6 @@ namespace LifeMatch.Models.ObjectMappers
     {
         public static RegistrationResponsesBEModel MapRegistrationResponses(RegistrationResponsesUIModel registrationResponsesUIModel)
         {
-            Enums.Gender gender;
-            if (!Enum.TryParse(registrationResponsesUIModel.Gender, out gender))
-            {
-                //TODO: Log defect
-                gender = Enums.Gender.Male;
-            }
-
             Enums.Relation relation = MapRelation(registrationResponsesUIModel.Relation);
 
             int day;
@@ -57,7 +50,6 @@ namespace LifeMatch.Models.ObjectMappers
             {
                 Name = registrationResponsesUIModel.Name,
                 DateOfBirth = dateOfBirth,
-                Gender = gender,
                 Country = registrationResponsesUIModel.Country,
                 City = registrationResponsesUIModel.City,
                 AboutMe = registrationResponsesUIModel.AboutMe,

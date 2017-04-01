@@ -1,14 +1,24 @@
 ﻿<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="~/Scripts/SearchMatch.js"></script>
+<script src="~/Scripts/Services/UserService.js"></script>
 
-<html ng-app="SearchMatch">
+<html ng-app="searchMatch">
 
 <head>
 </head>
 
 <body>
 
-<p>Search your soul mate NOW!</p>
+<div class="container" ng-controller="SearchMatchController" data-ng-init="init()">
+    
+    <b>Search your soul mate NOW!</b>
+
+    <br/><br/>
+    <button ng-click="getUserInfo()">getUserInfo</button>
+
+</div>
+
+        
 
 </body>
 

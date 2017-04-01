@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using LifeMatch.Models;
 using LifeMatch.Models.ObjectMappers;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using ActionResult = System.Web.Mvc.ActionResult;
 
 namespace LifeMatch.Controllers
@@ -15,7 +14,7 @@ namespace LifeMatch.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("WelcomePage");
         }
 
         public ActionResult SearchMatch()
@@ -37,14 +36,31 @@ namespace LifeMatch.Controllers
             return View();
         }
 
-        [System.Web.Mvc.HttpPost]
+        [HttpGet]
+        public JsonResult GetRegistrationOptions()
+        {
+            var registrationOptionsModel = new RegistrationOptionsModel(); //TODO - get them from DB (they're hard coded now)
+            return Json(registrationOptionsModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult RegisterMember(RegistrationResponsesUIModel registrationResponsesUIModel)
         {
             var registrationResponsesBEModel = RegistrationResponsesMapper.MapRegistrationResponses(registrationResponsesUIModel);
 
             //TODO - create member in DB based on the registrationResponsesBEModel
+            //TODO - Give some unique ID for the member 
+            var cookie = new HttpCookie("member") {["id"] = "12345"};
+            Response.Cookies.Add(cookie);
 
             return Json(registrationResponsesBEModel, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetUserInfo()
+        {
+            return Json("User 5", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
