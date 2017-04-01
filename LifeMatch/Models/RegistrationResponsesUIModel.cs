@@ -1,4 +1,6 @@
-﻿namespace LifeMatch.Models
+﻿using System.Collections.Generic;
+
+namespace LifeMatch.Models
 {
     public class RegistrationResponsesUIModel
     {
@@ -14,5 +16,6 @@
         public string PartnerAgesStart { get; set; }
         public string PartnerAgesEnd { get; set; }
         public string AboutPartner { get; set; }
+        public List<InterestModel> SelectedInterests { get; set; }
     }
 }

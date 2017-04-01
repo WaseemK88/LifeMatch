@@ -1,15 +1,7 @@
 ﻿body {
-    background-image: url('../../Content/Images/LifeMatchBackground1.png');
+    background-image: url('Images/datingBackGround.PNG');
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.center_div {
-    background: #FFFFFF;
-    margin: 0 auto;
-    width: 60%; /* value of your choice which suits your alignment */
-    border-radius: 8px;
-    padding: 20px;
 }
 
 h1 {
@@ -41,4 +33,51 @@ p {
 
 select {
     text-align: center !important;
+}
+
+/* ---------------------modal----------------------- */
+
+.modal-content {
+    background-image: url('Images/cloud.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.modal p {
+    font-size: 22px;
+    font-family: Comic Sans MS;
+}
+
+.modal-body .row .col-md-3 {
+    text-align: center;
+}
+
+.modal-body .row {
+    text-align: center;
+    padding: 20px;
+}
+
+.modal-body .row .col-md-4 {
+    text-align: center;
+    padding: 40px;
+}
+
+.modal-body button {
+    width: 80%;
+}
+
+.modal-body .col-md-3 {
+    padding: 3px;
+}
+
+.center_div {
+    background: #FFFFFF;
+    margin: 0 auto;
+    width: 40%;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.transparent {
+    opacity: 0.5;
 }

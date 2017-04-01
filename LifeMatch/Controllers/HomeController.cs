@@ -38,13 +38,7 @@ namespace LifeMatch.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public JsonResult SaveInterestsAsync(List<InterestModel> selectedInterests)
-        {
-            return Json(selectedInterests, JsonRequestBehavior.AllowGet);
-        }
-
-        [System.Web.Mvc.HttpPost]
-        public JsonResult RegisterMember([FromBody] RegistrationResponsesUIModel registrationResponsesUIModel)
+        public JsonResult RegisterMember(RegistrationResponsesUIModel registrationResponsesUIModel)
         {
             var registrationResponsesBEModel = RegistrationResponsesMapper.MapRegistrationResponses(registrationResponsesUIModel);
 

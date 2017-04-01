@@ -67,33 +67,119 @@
                 { id: 63, text: "Models", isSelected: false }
             ];
 
+            $scope.selectedInterests = [];
+
+            $scope.name = "";
+
+            $scope.days = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"];
+            $scope.selectedDay = "1";
+            $scope.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            $scope.selectedMonth = "January";
+            $scope.years = ["1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997"];
+            $scope.selectedYear = "1980";
+
+            $scope.relations = ["Man looking for a woman", "Woman looking for a man", "Man looking for a man", "Woman looking for a woman"];
+            $scope.selectedRelation = "Man looking for a woman";
+
+            $scope.ages = ["20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70"];
+            $scope.agesStart = "20";
+            $scope.agesEnd = "30";
+
+            //Showing / hiding the registration pages:
+            $scope.hideFirstRegPage = false;
+            $scope.hideSecondRegPage = true;
+            $scope.hideThirdRegPage = true;
+            $scope.hideInterestButtons = true;
+
+            //User's registration steps continuation:
+            $scope.finishedFirstStep = false;
+            $scope.finishedSecondsStep = false;
+            $scope.finishedThirdStep = false;
+            $scope.finishedInterestsStep = false;
+
             $scope.interestSelected = function (index) {
                 $scope.interestButtons[index].isSelected = !$scope.interestButtons[index].isSelected;
+            }         
+
+            $scope.RegistrationModalTitle = "About you";
+
+            $scope.completeFirstRegStage = function () {
+
+                $scope.hideFirstRegPage = true;
+                $scope.hideSecondRegPage = false;
+            }
+
+            $scope.completeSecondRegStage = function () {
+
+                $scope.RegistrationModalTitle = "About Your ideal partner";
+                $scope.hideSecondRegPage = true;
+                $scope.hideThirdRegPage = false;
+            }
+
+            $scope.completeThirdRegStage = function () {
+
+                $scope.RegistrationModalTitle = "Your interests";
+                $scope.hideThirdRegPage = true;
+                $scope.hideInterestButtons = false;
+            }
+
+            $scope.completeInterestsRegStage = function () {
+
+                $scope.updateInterests();
+
+                var registrationResponsesUIModel = {
+                    'Name': $scope.name,
+                    'Month': $scope.selectedMonth,
+                    'Day': $scope.selectedDay,
+                    'Year': $scope.selectedYear,
+                    'Country': $scope.country,
+                    'City': $scope.city,
+                    'AboutMe': $scope.aboutMe,
+                    'Relation': $scope.selectedRelation,
+                    'PartnerAgesStart': $scope.agesStart,
+                    'PartnerAgesEnd': $scope.agesEnd,
+                    'AboutPartner': $scope.aboutPartner,
+                    'SelectedInterests': $scope.selectedInterests 
+                };
+
+                alert("calling server");
+                //Register the member with all the responses for the registration form and the interests -
+                var url = "http://" + $window.location.host + "/Home/RegisterMember";
+                $http({
+                    url: url,
+                    method: "POST",
+                    data: JSON.stringify(registrationResponsesUIModel)
+                })
+                .then(function (interests) {
+                    var url = "http://" + $window.location.host + "/Home/SearchMatch";
+                    $window.location.href = url;
+                });
+            }
+
+
+            //Put the interests to send in the selectedInterests array :
+            $scope.updateInterests = function () {
+                for (var i = 0; i < $scope.interestButtons.length; i++) {
+                    if ($scope.interestButtons[i].isSelected) {
+                        $scope.selectedInterests.push($scope.interestButtons[i]);
+                    }
+                }
+                alert(JSON.stringify($scope.selectedInterests));
+            }
+            
+            $scope.openRegistrationModal = function () {
+                $("#loginOrRegisterModal").modal("hide");
+                $("#registrationModal").modal("show");
             }
 
             $scope.redirectToSearchMatch = function () {
+                $("#loginOrRegisterModal").modal("hide");
                 var url = "http://" + $window.location.host + "/Home/SearchMatch";
                 $window.location.href = url;
             };
 
-
-            $scope.sendInterests = function () {
-                var selectedInterests = [];
-                for (var i = 0; i < $scope.interestButtons.length; i++) {
-                    if ($scope.interestButtons[i].isSelected) {
-                        selectedInterests.push($scope.interestButtons[i]);
-                    }
-                }
-                alert(JSON.stringify(selectedInterests));
-
-                var url = "http://" + $window.location.host + "/Home/SaveInterestsAsync";
-                $http({
-                    url: url,
-                    method: "POST",
-                    data: JSON.stringify(selectedInterests)
-                })
-                .then(function (interests) {
-                    alert(interests);
-                    });
+            $scope.init = function () {
+                $("#loginOrRegisterModal").modal("show");
             };
+
         });

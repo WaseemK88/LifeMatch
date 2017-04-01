@@ -308,6 +308,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\cloud.jpg" />
+    <Content Include="Content\Images\datingBackGround.PNG" />
     <Content Include="Content\Images\LifeMatchBackground1.png" />
     <Content Include="Content\SearchMatch.css" />
     <Content Include="favicon.ico" />

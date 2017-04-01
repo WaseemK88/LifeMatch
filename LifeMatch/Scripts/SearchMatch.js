@@ -46,9 +46,10 @@
                     data: registrationResponsesUIModel
                 })
                 .then(function (member) {
-                    $scope.FirstName = member.data.FirstName;
-                    $scope.LastName = member.data.LastName;
+                    alert(member.data.Name);
+                    $scope.Name = member.data.Name;
                     $scope.showMessage = true;
+                    $("#interestsModal").modal("show");
                 });
             };
         });
