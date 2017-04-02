@@ -2,7 +2,6 @@
 <script src="~/Scripts/WelcomePage.js"></script>
 <link href="~/Content/WelcomePage.css" rel="stylesheet" />
 
-
 <html ng-app="WelcomePage">
 
 <head>
@@ -10,7 +9,7 @@
 
 <body>
 
-    <div class="container" ng-controller="WelcomePageController" data-ng-init="init()">  
+    <div class="container" ng-controller="WelcomePageController" data-ng-init="init()">
 
         <div class="modal fade" id="loginOrRegisterModal">
 
@@ -31,8 +30,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4">
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" 
-                                        data-target="#registrationModal" ng-click="openRegistrationModal()">Register</button>
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                        data-target="#registrationModal" ng-click="openRegistrationModal()">
+                                    Register
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
         <!-- Modal -->
         <div class="modal fade" id="registrationModal">
 
-            <div class="modal-dialog modal-lg" role="document" style="width: 80%; height:50%;">
+            <div class="modal-dialog modal-lg" role="document" style="width: 60%; height:40%;">
 
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -58,34 +59,34 @@
                         <div class="firstRegPage" ng-hide="hideFirstRegPage">
 
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <p>Name or nickname:</p>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-8">
                                     <input class="form-control" ng-model="name">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <p>Email:</p>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-8">
                                     <input class="form-control" ng-model="email">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <p>Password:</p>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-8">
                                     <input class="form-control" ng-model="password">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <p>Re-type password:</p>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-8">
                                     <input class="form-control" ng-model="retypePassword">
                                 </div>
                             </div>
@@ -128,7 +129,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p>Some interesting details<br />about you:</p>
+                                    <p>
+                                        Some interesting details<br />about you:
+                                    </p>
                                 </div>
                                 <div class="col-sm-9">
                                     <textarea class="form-control" ng-model="aboutMe"></textarea>
@@ -159,9 +162,15 @@
                                     <p>Between ages:<p />
                                 </div>
                                 <div class="col-sm-9">
-                                    <select class="form-control col-md-3" ng-model="agesStart" ng-options="x for x in ages"></select>
-                                    <div class="col-md-3"><b>And</b></div>
-                                    <select class="form-control col-md-3" ng-model="agesEnd" ng-options="x for x in ages"></select>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" style="width: 125%" ng-model="agesStart" ng-options="x for x in ages"></select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>And</p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" style="width: 125%" ng-model="agesEnd" ng-options="x for x in ages"></select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -186,7 +195,7 @@
 
                             <div class="col-md-3"
                                  ng-repeat="x in interestButtons track by $index">
-                                <button type="button" class="btn btn-warning"
+                                <button type="button" class="btn btn-primary"
                                         ng-class="{
                                     'transparent': x.isSelected
                                     }"
