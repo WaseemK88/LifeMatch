@@ -9,16 +9,125 @@
 
 <body>
 
-<div class="container" ng-controller="SearchMatchController" data-ng-init="init()">
-    
-    <b>Search your soul mate NOW!</b>
+    <div class="container" ng-controller="SearchMatchController" data-ng-init="initialize()" style="font-size: 20px;">
 
-    <br/><br/>
-    <button ng-click="getUserInfo()">getUserInfo</button>
+        <br /><br />
 
-</div>
+        <div class="row">
+            <div class="col-sm-12">
+                <b>Account information</b>
+            </div>
+        </div>
 
-        
+        <br /><br />
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Name or nickname:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{name}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Email:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{email}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Password:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{password}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Born at year:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{yearOfBirth}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Country:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{country}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>City:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{city}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>About you:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{aboutUser}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Gender:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{gender}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Interested in:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{partnerGender}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>Between ages :</p>
+            </div>
+            <div class="col-sm-1">
+                <p>{{partnerAgeStart}}</p>
+            </div>
+            <div class="col-sm-1">
+                <p> and </p>
+            </div>
+            <div class="col-sm-1">
+                <p>{{partnerAgeEnd}}</p>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <p>About your partner:</p>
+            </div>
+            <div class="col-sm-3">
+                <p>{{aboutPartner}}</p>
+            </div>
+        </div>
+
+    </div>
+
 
 </body>
 

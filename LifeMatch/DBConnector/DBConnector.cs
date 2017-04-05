@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
+using LifeMatch.Models;
 using MySql.Data.MySqlClient;
 
 namespace LifeMatch.DBConnector
@@ -16,28 +18,35 @@ namespace LifeMatch.DBConnector
         private string uid;
         private string password;
 
+        private const string WildCard = "*";
+
+        private static DBConnector myDBConnector = new DBConnector();
+
         //Constructor
-        public DBConnector()
+        private DBConnector()
         {
             Initialize();
+        }
+
+        public static DBConnector Instance()
+        {
+            return myDBConnector;
         }
 
         //Initialize values
         private void Initialize()
         {
-            server = "localhost";
-            database = "connectcsharptomysql";
-            uid = "username";
-            password = "password";
-            string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
+            server = "127.0.0.1";
+            database = "lifematch";
+            uid = "root";
+            password = "kubla555";
+            string connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
         }
 
 
         //open connection to database
-        private bool OpenConnection()
+        public bool OpenConnection()
         {
             try
             {
@@ -65,7 +74,7 @@ namespace LifeMatch.DBConnector
         }
 
         //Close connection
-        private bool CloseConnection()
+        public bool CloseConnection()
         {
             try
             {
@@ -79,22 +88,34 @@ namespace LifeMatch.DBConnector
             }
         }
 
-        //Insert statement
-        public void Insert()
+
+        public bool Insert(string tableName, List<string> data)
         {
-            string query = "INSERT INTO tableinfo (name, age) VALUES('John Smith', '33')";
-
-            //open connection
-            if (this.OpenConnection() == true)
+            string values = string.Empty;
+            for (int i = 0; i < data.Count; i++)
             {
-                //create command and assign the query and connection from the constructor
+                values += data[i] != null && data[i].Contains("STR_TO_DATE") ? $"{data[i]}" : $"'{data[i]}'";
+                if (i < data.Count - 1)//Not to put a ',' at the last value
+                {
+                    values += ",";
+                }
+            }
+
+            string query = $"INSERT INTO {tableName} {TablesHelper.GetTableColumnsToInsert(tableName)} VALUES({values})";
+
+            try
+            {
+                OpenConnection();
                 MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //Execute command
-                cmd.ExecuteNonQuery();
-
-                //close connection
-                this.CloseConnection();
+                var result = cmd.ExecuteNonQuery();
+                CloseConnection();
+                return true;
+            }
+            catch (Exception e)
+            {
+                CloseConnection();
+                //TODO - log defect
+                return false;
             }
         }
 
@@ -135,20 +156,16 @@ namespace LifeMatch.DBConnector
         }
 
         //Select statement
-        public List<string>[] Select()
+        public List<List<DBDataUnit>> Select(string tableName, string attributes = null, string filter = null)
         {
-            string query = "SELECT * FROM tableinfo";
+            string query = $"SELECT {attributes ?? WildCard} FROM {tableName} WHERE {filter};";
 
             //Create a list to store the result
-            List<string>[] list = new List<string>[3];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
-
-            //Open connection
-            if (this.OpenConnection() == true)
+            List<List<DBDataUnit>> results = new List<List<DBDataUnit>>();
+            try
             {
-                //Create Command
+                OpenConnection();
+
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -156,24 +173,25 @@ namespace LifeMatch.DBConnector
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["id"] + "");
-                    list[1].Add(dataReader["name"] + "");
-                    list[2].Add(dataReader["age"] + "");
+                    var dataUnits = TablesHelper.GetTableDataUnitsTemplates(tableName);
+                    foreach (var dataUnit in dataUnits)
+                    {
+                        var value = dataReader[dataUnit.ColumnName];
+                        dataUnit.Value = value;
+                    }
+                    results.Add(dataUnits);
                 }
-
                 //close Data Reader
                 dataReader.Close();
-
-                //close Connection
-                this.CloseConnection();
-
-                //return list to be displayed
-                return list;
+                CloseConnection();
+                return results;
             }
-            else
+            catch (Exception e)
             {
-                return list;
-            }
+                CloseConnection();
+                //TODO - log defect
+                return null;
+            }    
         }
 
         //Count statement

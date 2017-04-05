@@ -13,6 +13,19 @@ namespace LifeMatch.Models
             Female
         }
 
+        public enum ColumnType
+        {
+            String,
+            Integer,
+            Date,
+            Enum
+        }
+
+        public enum MySqlOperation
+        {
+            SELECT, INSERT, UPDATE, DELETE
+        }
+
         public enum Relation
         {
             ManLookingForWoman, WomanLookingForMan, ManLookingForMan, WomanLookingForWoman
@@ -33,7 +46,6 @@ namespace LifeMatch.Models
             November = 11,
             December = 12
         }
-
 
     }
 }

@@ -1,10 +1,6 @@
 ﻿angular.module('WelcomePage', [])
         .controller('WelcomePageController', function ($scope, $window, $http) {
 
-            $scope.selectedInterests = [];
-
-            $scope.name = "";
-
             //Showing / hiding the registration pages:
             $scope.hideFirstRegPage = false;
             $scope.hideSecondRegPage = true;
@@ -49,6 +45,8 @@
 
                 var registrationResponsesUIModel = {
                     'Name': $scope.name,
+                    'Email': $scope.email,
+                    'Password': $scope.password,
                     'Month': $scope.selectedMonth,
                     'Day': $scope.selectedDay,
                     'Year': $scope.selectedYear,
@@ -69,7 +67,8 @@
                     method: "POST",
                     data: JSON.stringify(registrationResponsesUIModel)
                 })
-                .then(function () {
+                .then(function (result) {
+                    alert(result.data.Email);
                     var url = "http://" + $window.location.host + "/Home/SearchMatch";
                     $window.location.href = url;
                 });
@@ -114,6 +113,11 @@
                         });
                     }
 
+                    $scope.selectedInterests = [];
+
+                    $scope.name = "";
+                    $scope.password = "";
+                    $scope.email = "";
                     $scope.days = result.data.Days;
                     $scope.selectedDay = "1";
                     $scope.months = result.data.Months;

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LifeMatch.DBConnector;
 using LifeMatch.Models;
-using LifeMatch.Models.ObjectMappers;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Ajax.Utilities;
 using ActionResult = System.Web.Mvc.ActionResult;
 
 namespace LifeMatch.Controllers
@@ -46,20 +46,31 @@ namespace LifeMatch.Controllers
         [HttpPost]
         public JsonResult RegisterMember(RegistrationResponsesUIModel registrationResponsesUIModel)
         {
-            var registrationResponsesBEModel = RegistrationResponsesMapper.MapRegistrationResponses(registrationResponsesUIModel);
+            RegistrationManager registrationManager = new RegistrationManager();
 
-            //TODO - create member in DB based on the registrationResponsesBEModel
-            //TODO - Give some unique ID for the member 
-            var cookie = new HttpCookie("member") {["id"] = "12345"};
+            var member = registrationManager.RegisterMember(registrationResponsesUIModel);
+
+            var cookie = new HttpCookie("member")
+            {
+                ["id"] = member.Id.ToString(),
+                Expires = DateTime.Now + TimeSpan.FromDays(30)
+            };
             Response.Cookies.Add(cookie);
 
-            return Json(registrationResponsesBEModel, JsonRequestBehavior.AllowGet);
+            return Json(member);
         }
 
         [HttpGet]
         public JsonResult GetUserInfo()
         {
-            return Json("User 5", JsonRequestBehavior.AllowGet);
+            var memberId = Request.Cookies?["member"]?.Values?["id"];
+            if (!memberId.IsNullOrWhiteSpace())
+            {
+                MemberManager memberManager = new MemberManager();
+                var member = memberManager.GetMemberById(Convert.ToInt32(memberId));
+                return Json(member, JsonRequestBehavior.AllowGet);
+            }
+            return null;
         }
 
     }
